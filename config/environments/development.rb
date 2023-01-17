@@ -144,3 +144,8 @@ end
 #app/controllers/post_images_controller.rb内「def new..end」の下に「def create..end」記述、一番下に「private..end」記述
 #config/routes.rb内の「resources」を「resources :post_images, only: [:new, :create, :index, :show]」に変更
 #app/views/layouts/application.html.erb内の「<% if user_signed_in? %>」の下に「<li><%= link_to '投稿フォーム', new_post_image_path %></li>」追加
+
+#11章
+#app/models/post_image.rb内「def get_image..end」追加、その下にもう一つ「def get_image..end」追加
+#app/controllers/post_images_controller.rb内の「def index」に「@post_images = PostImage.new」追加
+#app/views/post_images/index.html.erb内に「<% @post_images.each do |post_image| %>～<% end %>」追加
