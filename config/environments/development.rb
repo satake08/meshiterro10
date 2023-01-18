@@ -154,3 +154,11 @@ end
 #app/controllers/post_images_controller.rb内「def show..end」内に「@post_images = PostImage.new」追加
 #app/views/post_images/show.html.erb内に「<div>～</div>」追加
 #app/views/post_images/index.html.erb内の「<%= image_tag post_image.get_image %>」を「<%= link_to post_image_path(post_image.id) do %><% end %>」内に入れて記述
+
+#13章
+#app/controllers/post_images_controller.rb内「def destroy..end」内以下3行記述
+ #@post_image = post_image.find(params[:id])
+ #@post_image.destroy
+ #redirect_to '/post_images'
+#config/routes.rb内の「resources」を「resources :post_images, only: [:new, :create, :index, :show, :destroy]」に変更
+#app/views/post_images/show.html.erb内「投稿日」の下に「<% if @post_image.user == current_user %>～<% end %>」記述
