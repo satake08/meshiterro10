@@ -162,3 +162,8 @@ end
  #redirect_to '/post_images'
 #config/routes.rb内の「resources」を「resources :post_images, only: [:new, :create, :index, :show, :destroy]」に変更
 #app/views/post_images/show.html.erb内「投稿日」の下に「<% if @post_image.user == current_user %>～<% end %>」記述
+
+#14章
+#app/models/user.rb内「has_many :post_images, dependent: :destroy」の下に「has_one_attached :profile_image」以降の記述を追加
+#「rails g controller users show edit」実行
+#config/routes.rb内「#get 'users/show'～#get 'users/edit'」を「resources :users, only: [:show, :edit]」に変更、12行目に記述
