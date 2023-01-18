@@ -167,3 +167,9 @@ end
 #app/models/user.rb内「has_many :post_images, dependent: :destroy」の下に「has_one_attached :profile_image」以降の記述を追加
 #「rails g controller users show edit」実行
 #config/routes.rb内「#get 'users/show'～#get 'users/edit'」を「resources :users, only: [:show, :edit]」に変更、12行目に記述
+
+#15章
+#app/controllers/users_controller.rb内の「def show..end」に「@user = PostImage.find(params[:id])」「@post_images = @user.post_images」追加
+#app/views/users/show.html.erb内に「<!-- ユーザーの詳細 -->～<% end %>」追加
+#app/views/layouts/application.html.erb内「<li><%= link_to '投稿フォーム', new_post_image_path %></li>」の下に
+ #「<li><%= link_to 'マイページ', user_path(current_user.id) %></li>」追加
