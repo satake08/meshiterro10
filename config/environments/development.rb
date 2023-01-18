@@ -149,3 +149,8 @@ end
 #app/models/post_image.rb内「def get_image..end」追加、その下にもう一つ「def get_image..end」追加
 #app/controllers/post_images_controller.rb内の「def index」に「@post_images = PostImage.new」追加
 #app/views/post_images/index.html.erb内に「<% @post_images.each do |post_image| %>～<% end %>」追加
+
+#12章
+#app/controllers/post_images_controller.rb内「def show..end」内に「@post_images = PostImage.new」追加
+#app/views/post_images/show.html.erb内に「<div>～</div>」追加
+#app/views/post_images/index.html.erb内の「<%= image_tag post_image.get_image %>」を「<%= link_to post_image_path(post_image.id) do %><% end %>」内に入れて記述
