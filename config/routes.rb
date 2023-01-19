@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   #resources :post_images, only: [:new, :index, :show] :create追加
   #resources :post_images, only: [:new, :create, :index, :show] :destroy追加
   resources :post_images, only: [:new, :create, :index, :show, :destroy]
-  resources :users, only: [:show, :edit]#14章
+  #resources :users, only: [:show, :edit]#14章 updateを追加16章
+  resources :users, only: [:show, :edit, :update]
   devise_for :users
   get 'homes/top' =>"homes#top"
   get "homes/about" =>"homes#about", as: 'about'

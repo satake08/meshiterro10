@@ -173,3 +173,11 @@ end
 #app/views/users/show.html.erb内に「<!-- ユーザーの詳細 -->～<% end %>」追加
 #app/views/layouts/application.html.erb内「<li><%= link_to '投稿フォーム', new_post_image_path %></li>」の下に
  #「<li><%= link_to 'マイページ', user_path(current_user.id) %></li>」追加
+ 
+#16章
+#app/controllers/users_controller.rb内の「def edit..end」に「@user = PostImage.find(params[:id])」追加
+#app/views/users/edit.html.erb内に「<h2>プロフィール編集</h2>～<% end %>」記述
+#app/views/users/show.html.erb内「<%= image_tag @user.get_profile_image(100,100) %>」の下に「<p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>」記述
+#app/controllers/users_controller.rb内に一番下に「def update..end」「private..end」追加
+#config/routes.rb内の「resources :users, only: [:show, :edit]」を「resources :users, only: [:show, :edit, :update]」に変更
+#app/views/users/show.html.erb内「<p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>」の外側に「<% if @user == current_user %><% end %>」記述
