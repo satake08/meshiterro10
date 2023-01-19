@@ -181,3 +181,9 @@ end
 #app/controllers/users_controller.rb内に一番下に「def update..end」「private..end」追加
 #config/routes.rb内の「resources :users, only: [:show, :edit]」を「resources :users, only: [:show, :edit, :update]」に変更
 #app/views/users/show.html.erb内「<p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>」の外側に「<% if @user == current_user %><% end %>」記述
+
+#17章
+#app/views/post_images/index.html.erb内「<p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>」を
+ #「<p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>」に変更
+#app/views/post_images/show内「<p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>」を
+ #「<p>投稿ユーザー画像：<%= image_tag @post_image.user.get_profile_image(100,100) %></p>」に変更
