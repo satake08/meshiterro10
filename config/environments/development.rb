@@ -234,3 +234,13 @@ end
 #app/models/post_image.rb内「has_many :favorites, dependent: :destroy」の下に「validates :shop_name, presence: true」「validates :image, presence: true」追加
 #app/controller/post_images_controller.rb内の「def create..end」内「@post_image.user_id = current_user.id」の下を「if @post_image.save..end」に変更
 #app/views/post_images/new.html.erb内「<h1>画像投稿フォーム</h1>」の下に「<% if @post_image.errors.any? %>～<% end %>」追加
+
+#22章
+#Gemfile内一番下に「gem 'kaminari','~> 1.2.1'」追加
+#「bundle install」実行
+#「rails g kaminari:config」実行
+#「rails g kaminari:views default」実行
+#app/controllers/post_images_controller.rb内の「def index」内「@post_images = PostImage.all」を「@post_images = PostImage.page(params[:page])」に変更
+#app/controllers/users_controller.rb内の「def show」内「@post_images = @user.post_images」を「@post_images = @user.post_images.page(params[:page])」に変更
+#app/views/post_images/_list.html.erb内一番最後に「<%= paginate post_images %>」追加
+#config/initializers/kaminari_config.rb内「# config.default_per_page = 25」の下に「config.default_per_page = 5」追加
