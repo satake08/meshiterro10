@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
   def show
-    @user = PostImage.find(params[:id])
+    @user = User.find(params[:id])
     @post_images = @user.post_images
   end
 
   def edit
-    @user = PostImage.find(params[:id])
+    @user = User.find(params[:id])
   end
-  
+
   def update
-    @user = PostImage.find(params[:id])
-    @user.update(post_images_params)
-    redirect_to post_images_path(post_images.id) 
+    @user = User.find(params[:id])
+    @user.update(user_params)#(post_image_params)他のところに転移しようとしてエラー
+    redirect_to user_path#post_image_path他のところに転移しようとしてエラー
   end
 
 

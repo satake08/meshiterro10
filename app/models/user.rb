@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :post_images, dependent: :destroy
-  
+  has_many :post_comments, dependent: :destroy#18章
   #以下14章で追加
   has_one_attached :profile_image
   

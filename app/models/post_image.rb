@@ -1,14 +1,16 @@
 class PostImage < ApplicationRecord
   has_one_attached :image
   belongs_to :user
+  has_many :post_comments, dependent: :destroy
   
-  def get_image
-    if image.attached?
-      image
-    else
-      'no_image.jpg'
-    end
-  end
+  #def get_image
+  #  if image.attached?
+  #    image
+  #  else
+  #   'no_image.jpg'
+  # end
+  #end
+  #上記を以下に変更
 
   def get_image
     unless image.attached?

@@ -187,3 +187,24 @@ end
  #「<p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>」に変更
 #app/views/post_images/show内「<p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>」を
  #「<p>投稿ユーザー画像：<%= image_tag @post_image.user.get_profile_image(100,100) %></p>」に変更
+ 
+#18章
+#「rails g model PostComment comment:text user_id:integer post_image_id:integer」実行
+#「rails db:migrate」実行
+#app/models/user.rb内「has_many :post_images, dependent: :destroy」の下に「has_many :post_comments, dependent: :destroy」追加
+#app/models/post_image.rb内「belongs_to :user」の下に「has_many :post_comments, dependent: :destroy」追加
+#app/models/post_comment.rb内「belongs_to :user」「belongs_to :post_image」追加
+#「rails g controller post_comments」実行
+#config/routes.rb内「resources :post_images, only: [:new, :create, :index, :show, :destroy]」を親にする記述、以下に変更
+ #「resources :post_images, only: [:new, :create, :index, :show, :destroy] do～resources :users, only: [:show, :edit, :update]」
+#app/controllers/post_comments_controller.rb内「def create～end」「private～end」記述
+#app/controllers/post_images_controller.rb内の「def show」内「end」の上に「@post_comment = PostComment.new」追加
+#app/views/post_images/show.html.erb内一番下に「<div>～</div><div>～</div>」追加
+#app/views/post_images/index.html.erb内「<p>ユーザーネーム：<%= post_image.user.name %></p>」の下に
+ #「<p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>」追加
+#app/views/users/show.html.erb内内「<p>ユーザーネーム：<%= post_image.user.name %></p>」の下に
+ #「<p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>」追加
+#config/routes.rb内「resources :post_comments, only: [:create]」を「resources :post_comments, only: [:create, :destroy]」に変更
+#app/controllers/post_comments_conteoller内「private」の上に「def destroy..end」追加
+#app/views/post_images/show.html.erb内「<%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>」の下に
+ #「<% if post_comment.user == current_user %>～<% end %>」追加
