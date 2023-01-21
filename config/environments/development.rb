@@ -208,16 +208,24 @@ end
 #app/controllers/post_comments_conteoller内「private」の上に「def destroy..end」追加
 #app/views/post_images/show.html.erb内「<%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>」の下に
  #「<% if post_comment.user == current_user %>～<% end %>」追加
- 
- #19章
- #「rails g model Favorite user_id:integer post_image_id:integer」実行 モデル名の後に追加したいカラム名：データ型でファイル内に追加が不要になる
- #「rails db:migrate」実行
- #app/models/favorite.rb内「belongs_to :user」「belongs_to :post_image」追加
- #app/models/post_image.rb内「has_many :post_comments, dependent: :destroy」の下に「has_many :favorites, dependent: :destroy」追加
-  #一番下の「end」の上に「def favorited_by?(user)..end」追加
- #app/models/user.rb内「has_many :post_comments, dependent: :destroy」の下に「has_many :favorites, dependent: :destroy」追加
- #config/routes.rb内「resources :post_images, only: [:new, :create, :index, :show, :destroy] do」の下に「resource :favorites, only: [:create, :destroy]」追加
- #「rails g controller favorites」実行
- #app/controllers/favortes_controller.rb内「def create..end」「def destroy..end」追加
- #app/views/post_images/show.html.erb内「<%= link_to "削除", post_image_path(@post_image), method: :delete %><% end %>」の下に
-  #「<% if @post_image.favorited_by?(current_user) %>～<% end %>」追加
+
+#19章
+#「rails g model Favorite user_id:integer post_image_id:integer」実行 モデル名の後に追加したいカラム名：データ型でファイル内に追加が不要になる
+#「rails db:migrate」実行
+#app/models/favorite.rb内「belongs_to :user」「belongs_to :post_image」追加
+#app/models/post_image.rb内「has_many :post_comments, dependent: :destroy」の下に「has_many :favorites, dependent: :destroy」追加
+ #一番下の「end」の上に「def favorited_by?(user)..end」追加
+#app/models/user.rb内「has_many :post_comments, dependent: :destroy」の下に「has_many :favorites, dependent: :destroy」追加
+#config/routes.rb内「resources :post_images, only: [:new, :create, :index, :show, :destroy] do」の下に「resource :favorites, only: [:create, :destroy]」追加
+#「rails g controller favorites」実行
+#app/controllers/favortes_controller.rb内「def create..end」「def destroy..end」追加
+#app/views/post_images/show.html.erb内「<%= link_to "削除", post_image_path(@post_image), method: :delete %><% end %>」の下に
+ #「<% if @post_image.favorited_by?(current_user) %>～<% end %>」追加
+
+#20章
+#app/views/post_imagesに新ファイル「_list.html.erb」を作成
+#app/views/post_images/index.html.erb内かapp/views/users/show.html.erb内の「<% @post_images.each do |post_image| %>～<% end %>」を切り取り
+ #app/views/post_images/_list.html.erb内に貼り付け
+#app/views/post_images/_list.html.erb内「<% @post_images.each do |post_image| %>」を「<% post_images.each do |post_image| %>」に変更(＠を消すだけ)
+#app/views/users/show.html.erb内一番下に「<%= render 'post_images/list', post_images: @post_images %>」追加
+#
