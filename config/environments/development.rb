@@ -228,4 +228,9 @@ end
  #app/views/post_images/_list.html.erb内に貼り付け
 #app/views/post_images/_list.html.erb内「<% @post_images.each do |post_image| %>」を「<% post_images.each do |post_image| %>」に変更(＠を消すだけ)
 #app/views/users/show.html.erb内一番下に「<%= render 'post_images/list', post_images: @post_images %>」追加
-#
+
+#21章
+#app/controllers/application_controller.rb内一番上の「class」の下に「  before_action :authenticate_user!, except: [:top]」追加
+#app/models/post_image.rb内「has_many :favorites, dependent: :destroy」の下に「validates :shop_name, presence: true」「validates :image, presence: true」追加
+#app/controller/post_images_controller.rb内の「def create..end」内「@post_image.user_id = current_user.id」の下を「if @post_image.save..end」に変更
+#app/views/post_images/new.html.erb内「<h1>画像投稿フォーム</h1>」の下に「<% if @post_image.errors.any? %>～<% end %>」追加
