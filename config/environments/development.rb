@@ -128,7 +128,7 @@ end
 
 #8章
 #「rails g model PostImage」実行
-#db/migrate/(作成日時）_create_post_images.rb内に「t.string :shop_name」「t.string :caption」追加
+#db/migrate/(作成日時）_create_post_images.rb内に「t.string :shop_name」「t.string :caption」「t.integer :user_id」追加
 #「rails db:migrate」実行
 #app/models/post_image.rb内に「has_one_attached :image」追加
 
@@ -189,7 +189,7 @@ end
  #「<p>投稿ユーザー画像：<%= image_tag @post_image.user.get_profile_image(100,100) %></p>」に変更
  
 #18章
-#「rails g model PostComment comment:text user_id:integer post_image_id:integer」実行
+#「rails g model PostComment comment:text user_id:integer post_image_id:integer」実行 モデル名の後に追加したいカラム名：データ型でファイル内に追加が不要になる
 #「rails db:migrate」実行
 #app/models/user.rb内「has_many :post_images, dependent: :destroy」の下に「has_many :post_comments, dependent: :destroy」追加
 #app/models/post_image.rb内「belongs_to :user」の下に「has_many :post_comments, dependent: :destroy」追加
@@ -208,3 +208,16 @@ end
 #app/controllers/post_comments_conteoller内「private」の上に「def destroy..end」追加
 #app/views/post_images/show.html.erb内「<%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>」の下に
  #「<% if post_comment.user == current_user %>～<% end %>」追加
+ 
+ #19章
+ #「rails g model Favorite user_id:integer post_image_id:integer」実行 モデル名の後に追加したいカラム名：データ型でファイル内に追加が不要になる
+ #「rails db:migrate」実行
+ #app/models/favorite.rb内「belongs_to :user」「belongs_to :post_image」追加
+ #app/models/post_image.rb内「has_many :post_comments, dependent: :destroy」の下に「has_many :favorites, dependent: :destroy」追加
+  #一番下の「end」の上に「def favorited_by?(user)..end」追加
+ #app/models/user.rb内「has_many :post_comments, dependent: :destroy」の下に「has_many :favorites, dependent: :destroy」追加
+ #config/routes.rb内「resources :post_images, only: [:new, :create, :index, :show, :destroy] do」の下に「resource :favorites, only: [:create, :destroy]」追加
+ #「rails g controller favorites」実行
+ #app/controllers/favortes_controller.rb内「def create..end」「def destroy..end」追加
+ #app/views/post_images/show.html.erb内「<%= link_to "削除", post_image_path(@post_image), method: :delete %><% end %>」の下に
+  #「<% if @post_image.favorited_by?(current_user) %>～<% end %>」追加

@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "homes#top"
   get "homes/about" =>"homes#about", as: 'about'
-  resources :post_images, only: [:new, :create, :index, :show, :destroy] do#の親内に
-    #resources :post_comments, only: [:create]#を入れる
+  resources :post_images, only: [:new, :create, :index, :show, :destroy] do#の親内に 18章
+    resource :favorites, only: [:create, :destroy]#19章
+    #resources :post_comments, only: [:create]#を入れる 18章
     resources :post_comments, only: [:create, :destroy]#18章 :destroy追加
   end
   resources :users, only: [:show, :edit, :update]

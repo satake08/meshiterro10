@@ -6,9 +6,10 @@ class User < ApplicationRecord
 
   has_many :post_images, dependent: :destroy
   has_many :post_comments, dependent: :destroy#18章
+  has_many :favorites, dependent: :destroy#19章
   #以下14章で追加
   has_one_attached :profile_image
-  
+
   #def get_profile_image これを以下に変更
   def get_profile_image(width, height)
     unless profile_image.attached?
