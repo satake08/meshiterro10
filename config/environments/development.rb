@@ -275,5 +275,7 @@ end
 #app/controllers/users_controller.rb内「def edit」の一番上、「def update」の一番上から「user_id = params[:id].to_i～end」追加
  #「private」内「end」の上に「def is_matching_login_user～end」追加
  #「def edit」「def update」内の「user_id = params[:id].to_i～end」を「is_matching_login_user」に書き換え
-#
+ 
+
+#26章
 #
