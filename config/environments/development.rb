@@ -275,7 +275,12 @@ end
 #app/controllers/users_controller.rb内「def edit」の一番上、「def update」の一番上から「user_id = params[:id].to_i～end」追加
  #「private」内「end」の上に「def is_matching_login_user～end」追加
  #「def edit」「def update」内の「user_id = params[:id].to_i～end」を「is_matching_login_user」に書き換え
- 
+ #一番上から2行目にbefore_action :is_matching_login_user, only: [:edit, :update]追加、「is_matching_login_user」削除
+ #「def edit」には「@user = User.find(params[:id])」のみ、
+ #「def update」には「@user = User.find(params[:id])、@user.update(user_params)、redirect_to user_path(@user.id)」のみを記述
 
 #26章
-#
+#config/initializers/devise.rb内「config.authentication_keys = [:email]」の「#」を外す、「[:email]」を「[:name]」に変更
+#app/views/devise/sessions/new.html.erb内「<div class="container">～</div>」に変更、
+ #「<p>ユーザー名と<br>パスワードを入力してください。</p>」の下「<p>メールアドレスと<br>パスワードを入力してください。</p>」を削除
+ #「<%= f.text_field :name, autofocus: true, placeholder:"ユーザー名" %>」の下「<div class="input-group-prepend">～er:"メールアドレス" %>」を削除
