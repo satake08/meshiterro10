@@ -244,3 +244,29 @@ end
 #app/controllers/users_controller.rb内の「def show」内「@post_images = @user.post_images」を「@post_images = @user.post_images.page(params[:page])」に変更
 #app/views/post_images/_list.html.erb内一番最後に「<%= paginate post_images %>」追加
 #config/initializers/kaminari_config.rb内「# config.default_per_page = 25」の下に「config.default_per_page = 5」追加
+
+#23章
+#23章「ひな形アプリをダウンロード」クリックで「Bootstrap」ダウンロード後「dmm webcamp」フォルダにドラック&ドロップ
+#「cd bootstrap_template-main」で「bootstrap_template-main」に移動後「bundle install」実行「yarn install」実行「rails db:migrate」実行
+#bootstrap_template-main/app/views/posts/index.html.erb内「<table>」を「<table class="table table-striped">」に変更
+ #「<h1>Posts</h1>」の下に「<div class="container"><div class="row">」の2行と、「</table>」の下に「</div></div>」の2行追加
+ #「<div class="row">」の下に「<div class="col-lg-4" style="background-color: orange;"><h2>サイドバー</h2></div>」追加
+ #「<h2>サイドバー</h2><div>」の下に「<div class="col-lg-8">」追加、「</table>」の下に「</div>」追加
+ #「<%= link_to 'New Post', new_post_path %>」を「<%= link_to 'New Post', new_post_path class: "btn btn-secondary" %>」に変更
+ 
+#24章
+#「yarn add jquery bootstrap@4.5 popper.js」実行
+#config/webpack/environment.js内一番下に「const webpack～)」追加
+#app/javascriptに「stylesheets」フォルダ作成、「stylesheets」フォルダ内に「application.scss」ファイル作成、
+ #app/javascript/stylesheets/application.scss内に「@import '~bootstrap/scss/bootstrap';」記述
+#app/javascript/packs/application.js内「import "channels"」の下に
+ #「import "jquery";、import "popper.js";、import "bootstrap";、import "../stylesheets/application"」を4行にして追加
+#app/views/layouts/application.html.erb内「<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>」を
+ #「<%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>」に変更
+#「yarn add @fortawesome/fontawesome-free@5.15.4」実行
+#app/javascript/packs/application.js内「import "../stylesheets/application" 」の下に「import '@fortawesome/fontawesome-free/js/all'」追加
+#app/javascript/stylesheets/application.scss内「@import '~bootstrap/scss/bootstrap';」の下に「@import '~@fortawesome/fontawesome-free/scss/fontawesome';」追加
+#app/views/layouts/application.html.erb内「<%= csp_meta_tag %>」の下に「<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">」追加
+ #「</head>」の下から「</html>」の上までの「<body class="d-flex flex-column vh-100">～</body>」を追加
+#app/views/post_images/_list.html.erb内すべて「<div class="card-list-container py-5">～</div>」に変更
+#app/views/post_images/new.html.erb内すべて「<div class="container">～</div>」に変更
