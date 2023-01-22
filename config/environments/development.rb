@@ -270,3 +270,10 @@ end
  #「</head>」の下から「</html>」の上までの「<body class="d-flex flex-column vh-100">～</body>」を追加
 #app/views/post_images/_list.html.erb内すべて「<div class="card-list-container py-5">～</div>」に変更
 #app/views/post_images/new.html.erb内すべて「<div class="container">～</div>」に変更
+
+#25章
+#app/controllers/users_controller.rb内「def edit」の一番上、「def update」の一番上から「user_id = params[:id].to_i～end」追加
+ #「private」内「end」の上に「def is_matching_login_user～end」追加
+ #「def edit」「def update」内の「user_id = params[:id].to_i～end」を「is_matching_login_user」に書き換え
+#
+#
